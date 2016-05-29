@@ -21,39 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package de.Garkolym.Commands;
+package de.Garkolym.Events;
 
 import java.util.ArrayList;
 
-import de.Garkolym.Commands.Griefing.CommandUltraCactus;
-import de.Garkolym.Commands.Server.CommandCrash;
-import de.Garkolym.Commands.Server.CommandDEOP;
-import de.Garkolym.Commands.Server.CommandOP;
-import de.Garkolym.Commands.Trolling.CommandGlasVirus;
-import de.Garkolym.Commands.Trolling.CommandKackRegen;
+import org.bukkit.Bukkit;
 
-public class CommandManager {
+import de.Garkolym.Start;
+
+public class EventManager {
 	
-	private ArrayList<Command> commandList = new ArrayList<Command>();
-	public ArrayList<Command> getCommandList() {
-		return this.commandList;
+	public ArrayList<ITick> tickListener = new ArrayList<ITick>();
+	public EventManager() {
+		this.runTickRunnable();
+	}
+	private void runTickRunnable() {
+		Bukkit.getScheduler().runTaskTimer(Start.instance, new TickRunnable(), 1L, 1L);
 	}
 	
-	private void initCommands() {
-		// Server
-		this.getCommandList().add(new CommandOP());
-		this.getCommandList().add(new CommandDEOP());
-		this.getCommandList().add(new CommandCrash());
-		// Trolling
-		this.getCommandList().add(new CommandKackRegen());
-		this.getCommandList().add(new CommandGlasVirus());
-		// Griefing
-		this.getCommandList().add(new CommandUltraCactus());
-		
-	}
-	
-	public CommandManager() {
-		this.initCommands();
-	}
 	
 }

