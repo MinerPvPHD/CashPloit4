@@ -65,7 +65,6 @@ public class AsyncPlayerChatListener implements Listener {
 			for (Command command : Start.instance.getCommandManager().getCommandList()) {
 				if (command.getCommand().equalsIgnoreCase(dmp[0].substring(1, dmp[0].toCharArray().length))) {
 					command.onCommand(p, args);
-					p.sendMessage("Command: " + command.getCommand());
 					break;
 				}
 			}

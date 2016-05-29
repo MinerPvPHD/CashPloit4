@@ -27,7 +27,9 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 
-public abstract class Command {
+import de.Garkolym.Events.ITick;
+
+public abstract class Command implements ITick {
 
 	private String command;
 	private CommandCategory category;
@@ -54,4 +56,7 @@ public abstract class Command {
 	}
 	
 	public abstract void onCommand(Player p, ArrayList<String> args);
+	
+	@Override
+	public void onTick() {}
 }
