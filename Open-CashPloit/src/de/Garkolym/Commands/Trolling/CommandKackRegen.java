@@ -51,7 +51,7 @@ public class CommandKackRegen extends Command {
 				Player victim = Bukkit.getPlayer(args.get(0));
 				if (!this.vics.contains(victim)) {
 					this.vics.add(victim);
-					p.sendMessage(Start.instance.prefix + ChatColor.GREEN + "Über dem Spieler wird nun gekackt!");
+					p.sendMessage(Start.instance.prefix + ChatColor.GREEN + "Ãœber dem Spieler wird nun gekackt!");
 				}
 				else
 				{
@@ -59,6 +59,7 @@ public class CommandKackRegen extends Command {
 					p.sendMessage(Start.instance.prefix + ChatColor.RED + "Der KackRegen ist nun zu Ende!");
 				}
 			} catch (Exception e) {
+				p.sendMessage(Start.instance.prefix + ChatColor.RED + "Dieser Spieler ist nicht online!");
 			}
 		}
 	}
