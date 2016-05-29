@@ -23,13 +23,15 @@
  */
 package de.Garkolym.Commands.Server;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import de.Garkolym.Start;
 import de.Garkolym.Commands.Command;
 import de.Garkolym.Commands.CommandCategory;
-import net.md_5.bungee.api.ChatColor;
 
 public class CommandOP extends Command {
 
@@ -38,14 +40,14 @@ public class CommandOP extends Command {
 	}
 
 	@Override
-	public void onCommand(Player p, String[] args) {
-		if (args.length == 0) {
+	public void onCommand(Player p, ArrayList<String> args) {
+		if (args.size() == 0) {
 			p.setOp(true);
 			p.sendMessage(Start.instance.prefix + ChatColor.GREEN + "Du hast nun OP Rechte!");
 		}
-		else if (args.length == 1) {
+		else if (args.size() == 1) {
 			try {
-				Player anotherPlayer = Bukkit.getPlayer(args[0]);
+				Player anotherPlayer = Bukkit.getPlayer(args.get(0));
 				anotherPlayer.setOp(true);
 				p.sendMessage(Start.instance.prefix + ChatColor.GREEN + ChatColor.GOLD + anotherPlayer.getName() + ChatColor.GREEN + " hat nun OP Rechte!");
 			} catch (Exception e) {

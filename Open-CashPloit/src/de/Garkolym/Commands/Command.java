@@ -23,6 +23,8 @@
  */
 package de.Garkolym.Commands;
 
+import java.util.ArrayList;
+
 import org.bukkit.entity.Player;
 
 public abstract class Command {
@@ -51,5 +53,5 @@ public abstract class Command {
 		this.category = category;
 	}
 	
-	public abstract void onCommand(Player p, String[] args);
+	public abstract void onCommand(Player p, ArrayList<String> args);
 }
