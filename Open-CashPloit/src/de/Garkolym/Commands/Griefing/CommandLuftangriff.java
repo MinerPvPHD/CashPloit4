@@ -31,8 +31,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-
-
 import de.Garkolym.Start;
 import de.Garkolym.Commands.Command;
 import de.Garkolym.Commands.CommandCategory;
@@ -50,7 +48,7 @@ public class CommandLuftangriff extends Command{
 	@Override
 	public void onCommand(Player p, ArrayList<String> args) {
 		if (args.size() == 1) {
-			try {
+			
 				Player victim = Bukkit.getPlayer(args.get(0));
 				if(victim != null){
 					if (!this.vics.contains(victim)) {
@@ -63,9 +61,7 @@ public class CommandLuftangriff extends Command{
 				}else{
 					p.sendMessage(Start.instance.prefix + ChatColor.RED + "Der Spieler ist nicht online!");
 				}			
-			}catch(Exception e){
-				p.sendMessage(Start.instance.prefix + ChatColor.RED + "Der Spieler ist nicht online!");
-			}
+
 		}else{
 			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Bitte gib nach dem Command nur den Namen des Spielers an!");
 		}
