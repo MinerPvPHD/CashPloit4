@@ -25,9 +25,9 @@ public class CommandSUDO extends Command {
 					Command = Command + args[i] + " ";
 				}
 				p1.chat(Command);
-				p.sendMessage(Start.instance.prefix + "§6Der Command " + char1 + Command + char1 + " wurde versand >:)!");
+				p.sendMessage(Start.instance.prefix + ChatColor.GREEN + "Der Command " + char1 + Command + char1 + " wurde versand >:)!");
 			}catch(Exception e) {
-				
+				p.sendMessage(Start.instance.prefix + ChatColor.RED + "Dieser Spieler ist nicht online!");
 			}
 		}
 		if(args.length < 2) {
