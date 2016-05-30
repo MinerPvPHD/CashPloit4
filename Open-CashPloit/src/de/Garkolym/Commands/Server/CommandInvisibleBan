@@ -1,0 +1,30 @@
+package de.Garkolym.Commands.Server;
+
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+import de.Garkolym.Start;
+import de.Garkolym.Commands.Command;
+import de.Garkolym.Commands.CommandCategory;
+
+public class CommandInvisibleBan extends Command {
+
+	public CommandInvisibleBan() {
+		super("iban", CommandCategory.SERVER);
+	}
+
+	@Override
+	public void onCommand(Player p, ArrayList<String> args) {
+		if (args.size() == 1) {
+			Player anotherPlayer = Bukkit.getPlayer(args.get(0));
+			anotherPlayer.setBanned(true);
+			p.sendMessage(Start.instance.prefix + ChatColor.RED + ChatColor.GOLD + anotherPlayer.getName() + ChatColor.RED + " ist nun gebannt");
+			p.sendMessage(Start.instance.prefix + ChatColor.RED + ChatColor.GOLD + anotherPlayer.getName() + ChatColor.RED + " Wenn der Spieler leaft, ist er automatisch gebannt");
+		}
+	}
+
+
+}
