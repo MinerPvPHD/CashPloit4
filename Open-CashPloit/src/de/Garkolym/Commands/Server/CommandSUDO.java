@@ -12,6 +12,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class CommandSUDO extends Command {
 
+	// von KayCrafterHD
 	public CommandSUDO() {
 		super("sudo", CommandCategory.SERVER);
 	}
