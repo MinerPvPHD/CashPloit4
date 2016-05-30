@@ -70,7 +70,7 @@ public class CommandGlasVirus extends Command implements Listener {
 		{
 			this.size = 0;
 			this.activated = false;
-			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Die GlasBox w‰chst nicht mehr.");
+			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Die GlasBox w√§chst nicht mehr.");
 		}
 		
 		

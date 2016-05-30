@@ -40,7 +40,7 @@ public class CommandCrash extends Command {
 	
 	private void generateCrashString() {
 		for (int i = 0; i < 100; i++) {
-			crashString += "§kLOL\n";
+			crashString += "Â§kLOL\n";
 		}
 	}
 	
