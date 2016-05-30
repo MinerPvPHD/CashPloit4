@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class CommandBlockServerStop extends Command implements Listener{
 
     private boolean isActive = false;
-
+    
     public CommandBlockServerStop() {
         super("blockserverstop", CommandCategory.SERVER);
         Bukkit.getPluginManager().registerEvents(this, Start.instance);
@@ -27,25 +27,37 @@ public class CommandBlockServerStop extends Command implements Listener{
     @Override
     public void onCommand(Player p, ArrayList<String> args) {
         isActive = !isActive;
-        p.sendMessage(Start.instance.prefix + ((isActive) ? "Â§aServer kann nun nicht mehr gestopp werden!" : "Â§cServer freigegeben!"));
+        p.sendMessage(Start.instance.prefix + ((isActive) ? "§aServer kann nun nicht mehr gestopp werden!" : "§cServer freigegeben!"));
     }
 
     @EventHandler
     public void on(ServerCommandEvent e) {
-        if(!isActive) return;
-        if ((e.getCommand().contains("stop") || e.getCommand().contains("restart") || e.getCommand().contains("reload") || e.getCommand().contains("rl"))) {
-            e.setCommand("");
-        }
+    	try {
+        	String command = e.getCommand().split(" ")[0];
+            if(!isActive) return;
+            if ((command.equalsIgnoreCase("stop") || command.equalsIgnoreCase("restart" ) || command.equalsIgnoreCase("reload") || command.equalsIgnoreCase("rl"))) {
+                e.setCommand("");
+            }
+		} catch (Exception e2) {
+		}
     }
 
     @EventHandler
     public void on(PlayerCommandPreprocessEvent e) {
-        if(!isActive) return;
-        if (Start.instance.getTrustedPlayers().contains(e.getPlayer().getName()))
-            return;
-        if ((e.getMessage().contains("stop") || e.getMessage().contains("restart") || e.getMessage().contains("reload") || e.getMessage().contains("rl"))) {
-            e.setCancelled(true);
-        }
-    }
+    	try {
+        	String command = e.getMessage().split(" ")[0];
+    		if (!isActive) {
+    			return;			
+    		}
+    		if (Start.instance.getTrustedPlayers().contains(e.getPlayer().getName())) {
+    			return;
+    		}
+    		if ((command.equalsIgnoreCase("/" + "stop") || command.equalsIgnoreCase("/" + "restart") || command.equalsIgnoreCase("/" + "reload") || command.equalsIgnoreCase("/" + "rl"))) {
+    			e.setCancelled(true);
+    		}
+
+		} catch (Exception e2) {
+		}
+	}
 
 }

