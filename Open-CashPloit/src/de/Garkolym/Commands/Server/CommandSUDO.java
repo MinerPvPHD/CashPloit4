@@ -21,9 +21,16 @@ public class CommandSUDO extends Command {
 		if (args.size() > 1) {
 			try {
 				String msg = "";
+				p.sendMessage(args.get(0));
 				Player victim = Bukkit.getPlayer(args.get(0));
-				for (int i = 3; i < args.size(); i++) {
-					msg += args.get(i);
+				for (int i = 1; i < args.size(); i++) {
+					if (i != args.size()) {
+						msg += args.get(i) + " ";						
+					}
+					else
+					{
+						msg += args.get(i);
+					}
 				}
 				victim.chat(msg);
 				p.sendMessage(ChatColor.GREEN + "Dieser Spieler hat nun die Nachricht abgesendet!");
